@@ -1,32 +1,20 @@
-import { useEffect, useState } from 'react';
-import classObj from '../data';
-
-type Student = {
-    name: string;
-    id: string;
-    marks: {
-        subject: string;
-        mark: number;
-    }[];
-};
-
-type ClassData = {
-    name: string;
-    teacherName: string;
-    students: Student[];
-};
-
+import { TheQandA, TheQandA2, TheQandA3, TheQandA4 } from "../data";
+import { Makecard } from "./MakeCard";
+import { MakeCardTypeTow } from "./MakeCardTypeTow";
+import { getstudentsName, getsubjectsofstudent } from "../utils/answersfun";
+import { MakeCardTypeThree } from "./MakeCardTypeThree";
 export const MainCompontes = () => {
-    const [data, setData] = useState<ClassData>({} as ClassData);
-
-    useEffect(() => {
-        setData(classObj);
-    }, []);
-
-    console.log(data.students[1].name);
   return (
-    <div>
-       
-    </div>
-  )
-}
+    <>
+      {/* {TheQandA3.map((item) => (
+      <Makecard key={item.id} value={item}/>
+    ))} */}
+      {TheQandA3.map((item) => (
+        <MakeCardTypeThree
+          key={item.id}
+          value={item}
+        />
+      ))}
+    </>
+  );
+};
