@@ -2,7 +2,6 @@
   text-align: center;
   background-color: #363636;
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,9 +21,9 @@
    overflow: hidden;
    fill: #fff 3%;
    stroke: #fff 19%;
-   color: #fff;
+   color: #ffffff;
    font-weight: 400;
-   size: 17px;
+   font-size: 17px;
    line-height: 25.5px;
    letter-spacing: -0.41px;
    transition: all 0.1s ease-in;
@@ -45,7 +44,9 @@
    font-size: 30px;
    color: white;
 }
-
+.btn.active{
+  transform: rotate(0deg);
+}
 .select-btn{
   border: 1px solid #fff;
   padding: 4px 24px; 

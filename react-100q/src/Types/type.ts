@@ -20,7 +20,9 @@ export type studentSubjectProps =
   | "Physics"
   | "Chemistry"
   | "Computer";
-
+export type studentSubjectPropsTwo = {
+  value: "Ravi" | "Aju" | "Mini SS" | "Binu";
+};
 export type dataProps2 = {
   value: studentNameProps;
   key: "Average" | "total";
@@ -39,62 +41,80 @@ export type dataProps5 = {
 export type dataProps6 = {
   key: "high" | "low";
 };
-
-export type TheMakeCardProps = {
-  value:
-    | {
-        id: number;
-        Q: string;
-        A:
-          | string
-          | {
-              name: string;
-              id: string;
-              marks: { subject: string; mark: number }[];
-            }[];
-      }
-    | { id: number; Q: string; A: string[] };
-};
-
-export type TheMakeCardTwoProps = {
+export type dataProps7={
+   subject:studentSubjectProps,
+   studntName:studentNameProps
+}
+export type dataProps8={
+  subject:studentSubjectProps,
+  mark:number,
+  key:"high" | "low"
+}
+export type dataProps9={
+  mark:number,
+  key:"high" | "low"
+}
+export type MapValuesProps = {
   value:
     | {
         id: number;
         isselect: boolean;
         isselectType: string;
         Q: string;
-        A: (value: studentNameProps) => string[];
+        A: (
+          value: studentSubjectProps
+        ) => string[] | number[] | string | number;
       }
     | {
         id: number;
         isselect: boolean;
         isselectType: string;
         Q: string;
-        A: (value: studentNameProps) => number[];
+        A: (value: studentNameProps) => string[] | number[] | string | number;
+      }
+    | {
+        id: number;
+        isselect: boolean;
+        isselectType: string;
+        Q: string;
+        A: () => string | string[] | number | number[];
+      }
+    | {
+        id: number;
+        isselect: boolean;
+        isselectType: string;
+        Q: string;
+        A: () => {};
       };
 };
 
-export type TheMakeCardThreeProps = {
-  value:
-    | {
-        id: number;
-        isselect: boolean;
-        isselectType: string;
-        Q: string;
-        A: (value: studentSubjectProps) => number;
-      }
-    | {
-        id: number;
-        isselect: boolean;
-        isselectType: string;
-        Q: string;
-        A: (value: studentSubjectProps) => string;
-      }
-      | {
-        id: number;
-        isselect: boolean;
-        isselectType: string;
-        Q: string;
-        A: (value: studentSubjectProps) => string[];
-      };
-};
+export type TheQuestion_Answer_ArrayProps = (
+  | {
+      id: number;
+      isselect: boolean;
+      isselectType: string;
+      Q: string;
+      A: () => string | string[];
+    }
+  | {
+      id: number;
+      isselect: boolean;
+      isselectType: string;
+      Q: string;
+      A: (value: studentNameProps) => string[] | number[] | string | number;
+    }
+  | {
+      id: number;
+      isselect: boolean;
+      isselectType: string;
+      Q: string;
+      A: (value: studentSubjectProps) => string[] | number[] | string | number;
+    }
+  | {
+      id: number;
+      isselect: boolean;
+      isselectType: string;
+      Q: string;
+      A: () => {};
+    }
+)[];

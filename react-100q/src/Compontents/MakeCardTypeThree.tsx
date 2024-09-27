@@ -1,10 +1,9 @@
-import { useState } from "react";
+import React, { useState, createRef } from "react";
 import { Dropdownbutton } from "./Dropdownbutton";
 import {
+  MapValuesProps,
   studentNameProps,
   studentSubjectProps,
-  TheMakeCardThreeProps,
-  TheMakeCardTwoProps,
 } from "../Types/type";
 import {
   add_coma_to_array_element,
@@ -12,18 +11,19 @@ import {
   getsubjectsofstudent,
 } from "../utils/answersfun";
 import { ArrowButton } from "./ArrowButton";
-export const MakeCardTypeThree = ({
-  value,
-}: TheMakeCardThreeProps | TheMakeCardTwoProps) => {
+export const MakeCardTypeThree = ({ value }: MapValuesProps) => {
   const [toggle, settoggle] = useState(false);
   const [subjectName, setsubjectName] = useState("English");
   const [studentname, setstudentname] = useState("Ravi");
-  let subjectnamevalue = subjectName as studentSubjectProps;
-  let studentnamevlaue = studentname as studentNameProps;
+  const btnRef = React.createRef<HTMLButtonElement>();
+  let subjectnamevalue: studentSubjectProps =
+    subjectName as studentSubjectProps;
+  let studentnamevlaue: studentNameProps = studentname as studentNameProps;
   const addtoggleclass = () => {
     settoggle((Prev) => !Prev);
+    btnRef.current?.classList.toggle("active");
   };
-  console.log(toggle);
+
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     value.isselectType === "student"
       ? setstudentname(e.target.value)
@@ -33,18 +33,31 @@ export const MakeCardTypeThree = ({
     value.isselectType === "student"
       ? getstudentsName("name")
       : getsubjectsofstudent("Aju");
+
   return (
     <>
       <div className={"card"}>
-        <div className="Question">Question:{value.Q}</div>
-        <div className="Answer">Answer:{add_coma_to_array_element(value.A(studentnamevlaue))}</div>
-
+        <div className="Question">
+          Question {value.id} : {value.Q}
+        </div>
+        {toggle && (
+          <div className="Answer">
+            Answer :
+            {value.A.length === 0
+              ? // @ts-ignore
+                add_coma_to_array_element(value.A())
+              : value.isselectType === "student"
+              ? // @ts-ignore
+                add_coma_to_array_element(value.A(studentnamevlaue))
+              : // @ts-ignore
+                add_coma_to_array_element(value.A(subjectnamevalue))}
+          </div>
+        )}
         {value.isselect && (
           <Dropdownbutton data={selectvalue} onChange={onChange} />
         )}
-        <ArrowButton onChangeToggle={addtoggleclass} />
+        <ArrowButton onChangeToggle={addtoggleclass} btnref={btnRef} />
       </div>
     </>
   );
 };
-

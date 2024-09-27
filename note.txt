@@ -1,0 +1,46 @@
+Average Marks (Student/Subject/Class)
+
+Many questions ask to calculate and print average marks, for example:
+Q7: "Calculate and print the average marks for a specific student."
+Q9: "Calculate and print the average marks for all students in a specific subject."
+Q17: "Calculate and print the overall average marks for the class."
+
+Total Marks (Student/Subject/Class)
+
+Several questions ask for the total marks:
+Q8: "Calculate and print the total marks for a specific student."
+Q10: "Calculate and print the total marks for all students in a specific subject."
+Q18: "Calculate and print the overall total marks for the class."
+
+Highest/Lowest Marks (Student/Subject)
+
+Many requests are for finding the student/subject with the highest or lowest marks:
+Q11: "Find and print the student with the highest marks in a specific subject."
+Q12: "Find and print the student with the lowest marks in a specific subject."
+Q35: "Find and print the student(s) with the highest percentage of marks."
+
+Above/Below Certain Marks (Student/Subject)
+
+Several questions focus on students scoring above or below a certain mark:
+Q27: "Calculate and print the number of students who scored above a certain mark in a specific subject."
+Q28: "Calculate and print the number of students who scored below a certain mark in a specific subject."
+Q31: "Calculate and print the percentage of students who scored above a certain mark in a specific subject."
+
+Class Average Marks (Above/Below)
+
+Multiple questions ask for comparisons against class average marks:
+Q55: "Find and print the student(s) who scored above the class average marks."
+Q56: "Find and print the student(s) who scored below the class average marks."
+Q57: "Find and print the subject(s) in which the average marks are above the class average marks."
+
+Percentage Comparisons (Above/Below Average)
+
+Several questions involve percentage calculations related to average marks:
+Q63: "Calculate and print the percentage of students who scored above the class average marks in each subject."
+Q64: "Calculate and print the percentage of students who scored below the class average marks in each subject."
+Q99: "Find and print the subject(s) in which the highest percentage of students scored above the average marks of a specific student."
+
+
+
+
+
