@@ -1,4 +1,4 @@
-import { TheQuestion_Answer_Array } from "../data";
+import { TheQuestion_Answer_Array } from "../utils/answers/data";
 import { MakeCardTypeThree } from "./MakeCardTypeThree";
 export const MainCompontes = () => {
   return (

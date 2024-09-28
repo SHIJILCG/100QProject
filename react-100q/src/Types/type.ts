@@ -35,6 +35,10 @@ export type dataProps4 = {
   subject: studentSubjectProps;
   key: "high" | "low";
 };
+export type dataProps04 = {
+  subject: studentNameProps;
+  key: "high" | "low";
+};
 export type dataProps5 = {
   key: "Average" | "total";
 };
@@ -45,6 +49,10 @@ export type dataProps7={
    subject:studentSubjectProps,
    studntName:studentNameProps
 }
+export type dataProps07={
+  subject:studentNameProps,
+  studntName:studentNameProps
+}
 export type dataProps8={
   subject:studentSubjectProps,
   mark:number,
@@ -54,6 +62,7 @@ export type dataProps9={
   mark:number,
   key:"high" | "low"
 }
+export type dataProps10 = "high" | "low"
 export type MapValuesProps = {
   value:
     | {
