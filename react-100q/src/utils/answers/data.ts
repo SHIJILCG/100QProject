@@ -6,7 +6,6 @@ import {
 
 import {
   averageandtotalofstudent,
-  averageandtotalofstudents,
   getstudentsId,
   getstudentsName,
   getmarksofstudent,
@@ -35,15 +34,18 @@ import {
   Find_high_low_marl_for_each_subjects,
   make_object_as_arrayTypeTow,
   Find_hig_low_each_subj,
-  studen_avg_above_below_class_avg,
-  subject_avg_above_below_class_avg,
   subject_high_persentage_students_score_below_above_certain_mark,
   persentage_student_score_above_and_below_a_mark,
   persentage_student_score_above_and_below_a_mark_all,
   subject_low_persentage_students_score_below_above_certain_mark,
   persentage_student_score_above_and_below_a_mark_atlease,
   students_scrore_above_below_given_mark,
-  students_scrore_above_below_given_mark_for_certain_subject,
+  subject_avg_above_below_given_mark,
+  studen_score_above_below_given_mark,
+  averageandtotalofsubject,
+  studnts_above_below_a_mark_in_marjoritySubject,
+  subject_marjority_student_score_avg_above_below_In_spec_mark,
+  make_object_as_arrayTypeThree,
 } from "../answersfun";
 
 export const TheQuestion_Answer_Array: TheQuestion_Answer_ArrayProps = [
@@ -118,7 +120,7 @@ export const TheQuestion_Answer_Array: TheQuestion_Answer_ArrayProps = [
     isselectType: "subject",
     Q: "Write a function to calculate and print the average marks for all students in a specific subject..",
     A: (value: studentSubjectProps) =>
-      averageandtotalofstudents({ subject: value, key: "Average" }),
+      averageandtotalofsubject({ subject: value, key: "Average" }),
   },
   {
     id: 11,
@@ -126,7 +128,7 @@ export const TheQuestion_Answer_Array: TheQuestion_Answer_ArrayProps = [
     isselectType: "subject",
     Q: "Write a function to calculate and print the total marks for all students in a specific subject.",
     A: (value: studentSubjectProps) =>
-      averageandtotalofstudents({ subject: value, key: "total" }),
+      averageandtotalofsubject({ subject: value, key: "total" }),
   },
   {
     id: 12,
@@ -300,14 +302,14 @@ export const TheQuestion_Answer_Array: TheQuestion_Answer_ArrayProps = [
     isselect: true,
     isselectType: "subject",
     Q: "Write a function to calculate and print the percentage of students who scored above 30 mark in a specific subject",
-    A: (value: studentSubjectProps) => persentage_student_score_above_and_below_a_mark({subject:value,key:"high"})+"%"
+    A: (value: studentSubjectProps) => persentage_student_score_above_and_below_a_mark({subject:value,key:"high",mark:30})+"%"
   },
   {
     id: 32,
     isselect: true,
     isselectType: "subject",
     Q: "Write a function to calculate and print the percentage of students who scored below 30 mark in a specific subject",
-    A: (value: studentSubjectProps) =>persentage_student_score_above_and_below_a_mark({subject:value,key:"low"})+"%"
+    A: (value: studentSubjectProps) =>persentage_student_score_above_and_below_a_mark({subject:value,key:"low",mark:30})+"%"
   },
   {
     id: 33,
@@ -512,56 +514,56 @@ export const TheQuestion_Answer_Array: TheQuestion_Answer_ArrayProps = [
     isselect: false,
     isselectType: "none",
     Q: "Write a function to find and print the student(s) who scored above the class average marks",
-    A: () => studen_avg_above_below_class_avg({ key: "high" })
+    A: () => studen_score_above_below_given_mark({mark:get_overal_average_of_class({ key: "Average" }), key: "high" })
   },
   {
     id: 56,
     isselect: false,
     isselectType: "none",
     Q: "Write a function to find and print the student(s) who scored below the class average marks",
-    A: () => studen_avg_above_below_class_avg({ key: "low" })
+    A: () => studen_score_above_below_given_mark({mark:get_overal_average_of_class({ key: "Average" }), key: "low" })
   },
   {
     id: 57,
     isselect: false,
     isselectType: "none",
     Q: "Write a function to find and print the subject(s) in which the average marks are above the class average marks.",
-    A: () =>  subject_avg_above_below_class_avg({key:"high"})
+    A: () =>  subject_avg_above_below_given_mark({mark:get_overal_average_of_class({ key: "Average" }),key:"high"})
   },
   {
     id: 58,
     isselect: false,
     isselectType: "none",
     Q: "Write a function to find and print the subject(s) in which the average marks are above the class average marks.",
-    A: () =>  subject_avg_above_below_class_avg({key:"low"})
+    A: () =>  subject_avg_above_below_given_mark({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})
   },
   {
     id: 59,
     isselect: false,
     isselectType: "none",
-    Q: "Write a function to find and print the subject(s) in which the highest percentage of students scored above a certain mark.",
-    A: () =>   make_object_as_array(subject_high_persentage_students_score_below_above_certain_mark({key:"high"}))+"%"
+    Q: "Write a function to find and print the subject(s) in which the highest percentage of students scored above 30 mark.",
+    A: () =>   make_object_as_array(subject_high_persentage_students_score_below_above_certain_mark({key:"high",mark:30}))+"%"
   },
   {
     id: 60,
     isselect: false,
     isselectType: "none",
-    Q: "Write a function to find and print the subject(s) in which the highest percentage of students scored below a certain mark.",
-    A: () =>   make_object_as_array(subject_high_persentage_students_score_below_above_certain_mark({key:"low"}))+'%'
+    Q: "Write a function to find and print the subject(s) in which the highest percentage of students scored below 30 mark.",
+    A: () =>   make_object_as_array(subject_high_persentage_students_score_below_above_certain_mark({key:"low",mark:30}))+'%'
   },
   {
     id: 61,
     isselect: false,
     isselectType: "none",
-    Q: "Write a function to find and print the subject(s) in which the lowest percentage of students scored above a certain mark.",
-    A: () =>   make_object_as_array(subject_low_persentage_students_score_below_above_certain_mark({key:"high"}))+'%'
+    Q: "Write a function to find and print the subject(s) in which the lowest percentage of students scored above 30 mark.",
+    A: () =>   make_object_as_array(subject_low_persentage_students_score_below_above_certain_mark({key:"high",mark:30}))+'%'
   },
   {
     id: 62,
     isselect: false,
     isselectType: "none",
-    Q: "Write a function to find and print the subject(s) in which the lowest percentage of students scored below a certain mark.",
-    A: () =>   make_object_as_array(subject_low_persentage_students_score_below_above_certain_mark({key:"low"}))+'%'
+    Q: "Write a function to find and print the subject(s) in which the lowest percentage of students scored below 30 mark.",
+    A: () =>   make_object_as_array(subject_low_persentage_students_score_below_above_certain_mark({key:"low",mark:30}))+'%'
   },
   {
     id: 63,
@@ -588,7 +590,7 @@ export const TheQuestion_Answer_Array: TheQuestion_Answer_ArrayProps = [
     id: 66,
     isselect: false,
     isselectType: "none",
-    Q: "Write a function to calculate and print the percentage of students who scored above the class average marks in at least one subject.",
+    Q: "Write a function to calculate and print the percentage of students who scored below the class average marks in at least one subject.",
     A: () => persentage_student_score_above_and_below_a_mark_atlease({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})+'%' 
   },
   {
@@ -610,16 +612,224 @@ export const TheQuestion_Answer_Array: TheQuestion_Answer_ArrayProps = [
     isselect: false,
     isselectType: "none",
     Q: "Write a function to find and print the student(s) who scored above the class average marks in the majority of subjects.",
-    A: () =>students_scrore_above_below_given_mark_for_certain_subject({mark:get_overal_average_of_class({ key: "Average" }),key:"high"})
+    A: () =>studnts_above_below_a_mark_in_marjoritySubject({mark:get_overal_average_of_class({ key: "Average" }),key:"high"})
   },
   {
     id: 70,
     isselect: false,
     isselectType: "none",
     Q: "Write a function to find and print the student(s) who scored above the class average marks in the majority of subjects.",
-    A: () =>students_scrore_above_below_given_mark_for_certain_subject({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})
-  }
+    A: () =>studnts_above_below_a_mark_in_marjoritySubject({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})
+  },
+  {
+    id: 71,
+    isselect: false,
+    isselectType: "none",
+    Q: "Write a function to find and print the subject(s) in which the majority of students scored above the class average marks.",
+    A: () =>subject_marjority_student_score_avg_above_below_In_spec_mark({mark:get_overal_average_of_class({ key: "Average" }),key:"high"})
+  },
+  {
+    id: 72,
+    isselect: false,
+    isselectType: "none",
+    Q: "Write a function to find and print the subject(s) in which the majority of students scored below the class average marks.",
+    A: () =>subject_marjority_student_score_avg_above_below_In_spec_mark({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})
+  },
+  {
+    id: 73,
+    isselect: true,
+    isselectType: "student",
+    Q: "Write a function to calculate and print the percentage of students who scored above the average marks of a specific student in each subject.",
+    A: (value:studentNameProps) =>persentage_student_score_above_and_below_a_mark_all({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"high"})+'%'
+  },
+  {
+    id: 74,
+    isselect: true,
+    isselectType: "student",
+    Q: "Write a function to calculate and print the percentage of students who scored above the average marks of a specific student in each subject.",
+    A: (value:studentNameProps) =>persentage_student_score_above_and_below_a_mark_all({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"low"})+'%'
+  },
+  {
+    id: 75,
+    isselect: true,
+    isselectType: "student",
+    Q: "Write a function to calculate and print the percentage of students who scored above the average marks of a specific student in at least one subject.",
+    A: (value:studentNameProps) =>persentage_student_score_above_and_below_a_mark_atlease({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"high"})+'%'
+  },
+  {
+    id: 76,
+    isselect: true,
+    isselectType: "student",
+    Q: "Write a function to calculate and print the percentage of students who scored above the average marks of a specific student in at least one subject.",
+    A: (value:studentNameProps) =>persentage_student_score_above_and_below_a_mark_atlease({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"low"})+'%'
+  },
+  {
+    id: 77,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the student(s) who scored above the average marks of a specific student in all subjects.",
+    A: (value:studentNameProps) => students_scrore_above_below_given_mark({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"high"})
+  },
+  {
+    id: 78,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the student(s) who scored below the average marks of a specific student in all subjects.",
+    A: (value:studentNameProps) => students_scrore_above_below_given_mark({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"low"})
+  },
+  {
+    id: 79,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the subject(s) in which the average marks are above the average marks of a specific student.",
+    A: (value:studentNameProps) => subject_avg_above_below_given_mark({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"high"})
+  },
+  {
+    id: 80,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the subject(s) in which the average marks are below the average marks of a specific student.",
+    A: (value:studentNameProps) => subject_avg_above_below_given_mark({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"low"})
+  },
+  {
+    id: 81,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the subject(s) in which the highest percentage of students scored above the average marks of a specific student.",
+    A: (value:studentNameProps) => make_object_as_arrayTypeThree(subject_high_persentage_students_score_below_above_certain_mark({key:"high",mark:averageandtotalofstudent({ value: value, key: "Average" })}))
+  },
+  {
+    id: 82,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the subject(s) in which the highest percentage of students scored below the average marks of a specific student.",
+    A: (value:studentNameProps) => make_object_as_arrayTypeThree(subject_high_persentage_students_score_below_above_certain_mark({key:"low",mark:averageandtotalofstudent({ value: value, key: "Average" })}))
+  },
+  {
+    id: 83,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the subject(s) in which the lowest percentage of students scored above the average marks of a specific student.",
+    A: (value:studentNameProps) => make_object_as_array(subject_low_persentage_students_score_below_above_certain_mark({key:"high",mark:averageandtotalofstudent({ value: value, key: "Average" })}))+'%'
+  },
+  {
+    id: 84,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the subject(s) in which the lowest percentage of students scored below the average marks of a specific student.",
+    A: (value:studentNameProps) => make_object_as_array(subject_low_persentage_students_score_below_above_certain_mark({key:"low",mark:averageandtotalofstudent({ value: value, key: "Average" })}))+'%'
+  },
+  {
+    id: 85,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to calculate and print the percentage of students who scored above the average marks of the class in each subject.",
+    A: () => persentage_student_score_above_and_below_a_mark_all({mark:get_overal_average_of_class({ key: "Average" }),key:"high"})+'%'
+  },
+  {
+    id: 86,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to calculate and print the percentage of students who scored below the average marks of the class in each subject.",
+    A: () => persentage_student_score_above_and_below_a_mark_all({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})+'%'
+  },
+  {
+    id: 87,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to calculate and print the percentage of students who scored above the average marks of the class in at least one subject.",
+    A: () => persentage_student_score_above_and_below_a_mark_atlease({mark:get_overal_average_of_class({ key: "Average" }),key:"high"})+'%'
+  },
+  {
+    id: 88,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to calculate and print the percentage of students who scored below the average marks of the class in at least one subject.",
+    A: () => persentage_student_score_above_and_below_a_mark_atlease({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})+'%'
+  },
+  {
+    id: 89,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to find and print the student(s) who scored above the average marks of the class in all subjects.",
+    A: () => students_scrore_above_below_given_mark({mark:get_overal_average_of_class({ key: "Average" }),key:"high"})
+  },
+  {
+    id: 90,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to find and print the student(s) who scored below the average marks of the class in all subjects.",
+    A: () => students_scrore_above_below_given_mark({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})
+  },
+  {
+    id: 91,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to find and print the student(s) who scored above the average marks of the class in the majority of subjects.",
+    A: () => studnts_above_below_a_mark_in_marjoritySubject({mark:get_overal_average_of_class({ key: "Average" }),key:"high"})
+  },
+  {
+    id: 92,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to find and print the student(s) who scored below the average marks of the class in the majority of subjects.",
+    A: () => studnts_above_below_a_mark_in_marjoritySubject({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})
+  },
+  {
+    id: 93,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to find and print the subject(s) in which the majority of students scored above the average marks of the class.",
+    A: () => subject_marjority_student_score_avg_above_below_In_spec_mark({mark:get_overal_average_of_class({ key: "Average" }),key:"high"})
+  },
+  {
+    id: 94,
+    isselect: false ,
+    isselectType: "none",
+    Q: "Write a function to find and print the subject(s) in which the majority of students scored below the average marks of the class.",
+    A: () => subject_marjority_student_score_avg_above_below_In_spec_mark({mark:get_overal_average_of_class({ key: "Average" }),key:"low"})
+  },
+  {
+    id: 95,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to calculate and print the percentage of students who scored above the average marks of a specific student in the majority of subjects.",
+    A: (value:studentNameProps) => ((studnts_above_below_a_mark_in_marjoritySubject({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"high"}).length / getstudentsName('name').length) * 100)+"%"
+  },
+  {
+    id: 96,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to calculate and print the percentage of students who scored below the average marks of a specific student in the majority of subjects.",
+    A: (value:studentNameProps) => ((studnts_above_below_a_mark_in_marjoritySubject({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"low"}).length / getstudentsName('name').length) * 100)+"%"
+  },
+  {
+    id: 97,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to calculate and print the percentage of students who scored above the average marks of a specific student in the majority of subjects.",
+    A: (value:studentNameProps) => ((studnts_above_below_a_mark_in_marjoritySubject({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"high"}).length / getstudentsName('name').length) * 100)+"%"
+  },
+  {
+    id: 98,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to calculate and print the percentage of students who scored below the average marks of a specific student in the majority of subjects.",
+    A: (value:studentNameProps) => ((studnts_above_below_a_mark_in_marjoritySubject({mark:averageandtotalofstudent({ value: value, key: "Average" }),key:"low"}).length / getstudentsName('name').length) * 100)+"%"
+  },
+  {
+    id: 99,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the subject(s) in which the highest percentage of students scored above the average marks of a specific student.",
+    A: (value:studentNameProps) => make_object_as_arrayTypeThree(subject_high_persentage_students_score_below_above_certain_mark({key:"high",mark:averageandtotalofstudent({ value: value, key: "Average" })}))
+  },
+  {
+    id: 100,
+    isselect: true ,
+    isselectType: "student",
+    Q: "Write a function to find and print the subject(s) in which the lowest percentage of students scored below the average marks of a specific student.",
+    A: (value:studentNameProps) => make_object_as_arrayTypeThree(subject_high_persentage_students_score_below_above_certain_mark({key:"low",mark:averageandtotalofstudent({ value: value, key: "Average" })}))
+  },
 ];
-
-
 

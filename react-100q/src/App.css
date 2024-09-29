@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
   background-color: #363636;
@@ -28,6 +29,10 @@
    letter-spacing: -0.41px;
    transition: all 0.1s ease-in;
 }
+.card:hover {
+  border: 1px solid #FEE3A6;
+  color: #FEE3A6;
+}
 
 .Question,.Answer{
   width: 90%;
@@ -39,14 +44,16 @@
    right: 10px;
    top: 10px;
    transform: rotate(180deg);
+   transition: transform 0.01s ease-in-out;
    border: 0;
    background-color: transparent;
    font-size: 30px;
-   color: white;
 }
 .btn.active{
   transform: rotate(0deg);
+  transition: transform 0.1s ease-in-out;
 }
+
 .select-btn{
   border: 1px solid #fff;
   padding: 4px 24px; 
@@ -60,4 +67,26 @@
 }
 .select-btn:active,:focus{
    outline: none;
+}
+.card:hover .select-btn{
+   color: #FEE3A6;
+   border-color: #FEE3A6;
+}
+.pagination{
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   padding: 40px 20px;
+}
+.pagination-btn{
+    border: 1px solid white;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    color: white;
+    background-color: transparent;
+}
+.pagination-btn:hover{
+  border: 1px solid #FEE3A6;
+  color: #FEE3A6;
 }

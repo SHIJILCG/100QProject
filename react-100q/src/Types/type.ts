@@ -62,6 +62,9 @@ export type dataProps9={
   mark:number,
   key:"high" | "low"
 }
+
+
+
 export type dataProps10 = "high" | "low"
 export type MapValuesProps = {
   value:
