@@ -13,7 +13,7 @@ export const Pagination = ({value}:PaginationProps) => {
   return (
     <div className='pagination'>
          {
-            array.map(value => <Paginaionbutton key={value} value={value}/>)
+            array.map(value => value !== 1 ? <Paginaionbutton key={value} value={value}/> : <Paginaionbutton key={value} value={value} className={'active'}/> )
          }
     </div>
   )

@@ -32,6 +32,7 @@
 .card:hover {
   border: 1px solid #FEE3A6;
   color: #FEE3A6;
+  padding: 16px 35px;
 }
 
 .Question,.Answer{
@@ -87,6 +88,11 @@
     background-color: transparent;
 }
 .pagination-btn:hover{
+  border: 1px solid #FEE3A6;
+  color: #FEE3A6;
+  
+}
+.pagination-btn.active{
   border: 1px solid #FEE3A6;
   color: #FEE3A6;
 }

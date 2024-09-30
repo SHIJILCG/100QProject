@@ -6,6 +6,12 @@ import { createContext } from "react";
 export const MainCompontesContext= createContext<React.Dispatch<React.SetStateAction<number>> | null>(null) 
 export const MainCompontes = () => {
   const [paginationvalue, setpaginationvalue] = useState(1)
+  let paginarionbuttons=document.querySelectorAll('.pagination-btn')
+   
+if(paginarionbuttons.length > 0){
+  paginarionbuttons.forEach(buttons=> buttons.classList.remove('active'))
+  paginarionbuttons[paginationvalue - 1].classList.add('active') 
+}
   let lastfilterpoint = paginationvalue * 20
   let firstfilterpoint = lastfilterpoint - 20
   let TheQuestion_Answer_ArrayOffilter= TheQuestion_Answer_Array.slice(firstfilterpoint,lastfilterpoint)
