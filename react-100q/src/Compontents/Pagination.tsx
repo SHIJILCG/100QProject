@@ -1,20 +1,25 @@
-import React from 'react'
-import { Paginaionbutton } from './Paginaionbutton'
-type PaginationProps={
-    value:number
-}
-export const Pagination = ({value}:PaginationProps) => {
-    let array=[]
-    let numberofpagination = value / 20
-    for(let i = 1; i <=numberofpagination; i++){
-          array.push(i)
-    }
+import React from "react";
+import { Paginaionbutton } from "./Paginaionbutton";
+type PaginationProps = {
+  value: number;
+  paginationValue: number;
+};
+export const Pagination = ({ value, paginationValue }: PaginationProps) => {
+  const array = [];
+  let NumberofPagination = value / 20;
+  for (let i = 1; i <= NumberofPagination; i++) {
+    array.push(i);
+  }
 
   return (
-    <div className='pagination'>
-         {
-            array.map(value => value !== 1 ? <Paginaionbutton key={value} value={value}/> : <Paginaionbutton key={value} value={value} className={'active'}/> )
-         }
+    <div className="pagination">
+      {array.map((value) =>
+        value === paginationValue ? (
+          <Paginaionbutton key={value} value={value} className="active" />
+        ) : (
+          <Paginaionbutton key={value} value={value} />
+        )
+      )}
     </div>
-  )
-}
+  );
+};

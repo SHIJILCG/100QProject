@@ -5,34 +5,35 @@ import {
   studentNameProps,
   studentSubjectProps,
 } from "../Types/type";
-import {
-  add_coma_to_array_element,
-  getstudentsName,
-  getsubjectsofstudent,
-} from "../utils/answersfun";
+import { add_coma_to_array_element } from "../utils/answers/common";
 import { ArrowButton } from "./ArrowButton";
-export const MakeCardTypeThree = ({ value }: MapValuesProps) => {
+import { STUDENTS, SUBJECTS } from "../Data/DataObject";
+
+export const MakeCard = ({ value }: MapValuesProps) => {
   const [toggle, settoggle] = useState(false);
   const [subjectName, setsubjectName] = useState("English");
   const [studentname, setstudentname] = useState("Ravi");
+  const studentNameValue = studentname as studentNameProps;
+  const subjectNameValue = subjectName as studentSubjectProps;
+
+  const StudentVariable = "student";
+  const ToggleVariable = "active";
   const btnRef = React.createRef<HTMLButtonElement>();
-  let subjectnamevalue: studentSubjectProps =
-    subjectName as studentSubjectProps;
-  let studentnamevlaue: studentNameProps = studentname as studentNameProps;
+
   const addtoggleclass = () => {
     settoggle((Prev) => !Prev);
-    btnRef.current?.classList.toggle("active");
+    btnRef.current?.classList.toggle(ToggleVariable);
   };
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    value.isselectType === "student"
+    value.isselectType === StudentVariable
       ? setstudentname(e.target.value)
       : setsubjectName(e.target.value);
   };
   const selectvalue =
-    value.isselectType === "student"
-      ? getstudentsName("name")
-      : getsubjectsofstudent("Aju");
+    value.isselectType === StudentVariable
+      ? Object.values(STUDENTS)
+      : Object.values(SUBJECTS);
 
   return (
     <>
@@ -43,14 +44,15 @@ export const MakeCardTypeThree = ({ value }: MapValuesProps) => {
         {toggle && (
           <div className="Answer">
             Answer :
-            {value.A.length === 0
-              ? // @ts-ignore
-                add_coma_to_array_element(value.A())
-              : value.isselectType === "student"
-              ? // @ts-ignore
-                add_coma_to_array_element(value.A(studentnamevlaue))
-              : // @ts-ignore
-                add_coma_to_array_element(value.A(subjectnamevalue))}
+            {value.A !== undefined && value.A.length === 0
+              ? add_coma_to_array_element(value.A())
+              : ""}
+            {value.A1 !== undefined && value.isselectType == "student"
+              ? add_coma_to_array_element(value.A1(studentNameValue))
+              : ""}
+            {value.A2 !== undefined && value.isselectType == "subject"
+              ? add_coma_to_array_element(value.A2(subjectNameValue))
+              : ""}
           </div>
         )}
         {value.isselect && (

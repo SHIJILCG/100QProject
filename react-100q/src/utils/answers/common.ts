@@ -13,8 +13,9 @@ import {
   dataProps9,
   studentNameProps,
   studentSubjectProps,
-} from "../Types/type";
-import classObj from "../Data/ResultObject";
+} from "../../Types/type";
+import classObj from "../../Data/DataObject";
+
 ///////////////////////////////////////////////////////
 export const getClassNameAndTeacherName = (value: "name" | "teacherName") => {
   let result = classObj[value];
@@ -39,6 +40,7 @@ export const getMark = (data: dataProps7) => {
   });
   return value;
 };
+
 ///////////////////////////////////////////////////////////////////////
 
 export const getstudentsId = (value: "id") => {
@@ -48,7 +50,7 @@ export const getstudentsId = (value: "id") => {
 };
 // //////////////////////////////////////////////////////////////////
 
-export const getmarksofstudent = (data: studentNameProps) => {
+export const getmarksofstudent = <T>(data: T) => {
   let result: number[] = [];
   classObj.students.forEach((student) => {
     if (student.name === data) {
@@ -59,7 +61,7 @@ export const getmarksofstudent = (data: studentNameProps) => {
 };
 /////////////////////////////////////////////////////////////
 
-export const getsubjectsofstudent = (data: studentNameProps) => {
+export const getsubjectsofstudent = <T>(data: T) => {
   let result: string[] = [];
   classObj.students.forEach((student) => {
     if (student.name === data) {
@@ -272,7 +274,9 @@ export const studnts_above_below_a_mark_in_Allsubj = (data: dataProps9) => {
   return result.length === 0 ? "No one" : result;
 };
 //////////////////////////////////////////////////////////////////////////////////-copy of above for atleast
-export const studnts_above_below_a_mark_in_AtleastOnesubj = (data: dataProps9) => {
+export const studnts_above_below_a_mark_in_AtleastOnesubj = (
+  data: dataProps9
+) => {
   let result: string[] = [];
   getstudentsName("name").map((student) => {
     let studentname = student as studentNameProps;
@@ -291,21 +295,24 @@ export const studnts_above_below_a_mark_in_AtleastOnesubj = (data: dataProps9) =
   return result.length === 0 ? "No one" : result;
 };
 /////////////////////////////////////////////////////////////////////////////////////-copy of above for majority69,70
-export const studnts_above_below_a_mark_in_marjoritySubject = (data: dataProps9) => {
+export const studnts_above_below_a_mark_in_marjoritySubject = (
+  data: dataProps9
+) => {
   let result: string[] = [];
   getstudentsName("name").map((student) => {
     let studentname = student as studentNameProps;
-    let flag = 0
+    let flag = 0;
     getsubjectsofstudent(studentname).map((subject) => {
       let subjectname = subject as studentSubjectProps;
       let mark = getMark({ subject: subjectname, studntName: studentname });
       if (data.key === "high") {
-        if (mark > data.mark) flag++
+        if (mark > data.mark) flag++;
       } else if (data.key === "low") {
-        if (mark < data.mark) flag++ 
+        if (mark < data.mark) flag++;
       }
     });
-    if (flag >= getsubjectsofstudent('Aju').length / 2) result.push(studentname);
+    if (flag >= getsubjectsofstudent("Aju").length / 2)
+      result.push(studentname);
   });
   return result.length === 0 ? "No one" : result;
 };
@@ -316,7 +323,7 @@ export const persentage_student_score_above_and_below_a_mark_all = (
   let answer;
   data.key == "high"
     ? (answer = studnts_above_below_a_mark_in_Allsubj({
-        mark:data.mark,
+        mark: data.mark,
         key: "high",
       }))
     : (answer = studnts_above_below_a_mark_in_Allsubj({
@@ -336,7 +343,7 @@ export const persentage_student_score_above_and_below_a_mark_atlease = (
   let answer;
   data.key == "high"
     ? (answer = studnts_above_below_a_mark_in_AtleastOnesubj({
-        mark:data.mark,
+        mark: data.mark,
         key: "high",
       }))
     : (answer = studnts_above_below_a_mark_in_AtleastOnesubj({
@@ -568,15 +575,23 @@ export const subject_high_persentage_students_score_below_above_certain_mark = (
   getsubjectsofstudent("Aju").forEach((subject) => {
     let subjectName = subject as studentSubjectProps;
     if (data.key === "high") {
-            reults.push({
-               subject:subjectName,
-               answer:persentage_student_score_above_and_below_a_mark({subject:subjectName,key:"high",mark:data.mark})
-            })
+      reults.push({
+        subject: subjectName,
+        answer: persentage_student_score_above_and_below_a_mark({
+          subject: subjectName,
+          key: "high",
+          mark: data.mark,
+        }),
+      });
     } else if (data.key === "low") {
       reults.push({
-        subject:subjectName,
-        answer:persentage_student_score_above_and_below_a_mark({subject:subjectName,key:"low",mark:data.mark})
-     })
+        subject: subjectName,
+        answer: persentage_student_score_above_and_below_a_mark({
+          subject: subjectName,
+          key: "low",
+          mark: data.mark,
+        }),
+      });
     }
   });
 
@@ -591,15 +606,23 @@ export const subject_low_persentage_students_score_below_above_certain_mark = (
   getsubjectsofstudent("Aju").forEach((subject) => {
     let subjectName = subject as studentSubjectProps;
     if (data.key === "high") {
-            reults.push({
-               subject:subjectName,
-               answer:persentage_student_score_above_and_below_a_mark({subject:subjectName,key:"high",mark:data.mark})
-            })
+      reults.push({
+        subject: subjectName,
+        answer: persentage_student_score_above_and_below_a_mark({
+          subject: subjectName,
+          key: "high",
+          mark: data.mark,
+        }),
+      });
     } else if (data.key === "low") {
       reults.push({
-        subject:subjectName,
-        answer:persentage_student_score_above_and_below_a_mark({subject:subjectName,key:"low",mark:data.mark})
-     })
+        subject: subjectName,
+        answer: persentage_student_score_above_and_below_a_mark({
+          subject: subjectName,
+          key: "low",
+          mark: data.mark,
+        }),
+      });
     }
   });
 
@@ -607,12 +630,11 @@ export const subject_low_persentage_students_score_below_above_certain_mark = (
   return Find_same_vlue(reults, "low");
 };
 //////////////////////////////////////////////////////////////////////////67,68
-export const students_scrore_above_below_given_mark=( data: dataProps9
-) => {
+export const students_scrore_above_below_given_mark = (data: dataProps9) => {
   let answer;
   data.key == "high"
     ? (answer = studnts_above_below_a_mark_in_Allsubj({
-        mark:data.mark,
+        mark: data.mark,
         key: "high",
       }))
     : (answer = studnts_above_below_a_mark_in_Allsubj({
@@ -620,28 +642,29 @@ export const students_scrore_above_below_given_mark=( data: dataProps9
         key: "low",
       }));
 
-    return  answer
-     
-}
+  return answer;
+};
 //////////////////////////////////////////////////////////////////////////////////// 71,72
-export const subject_marjority_student_score_avg_above_below_In_spec_mark = (data: dataProps9) => {
+export const subject_marjority_student_score_avg_above_below_In_spec_mark = (
+  data: dataProps9
+) => {
   let reults: studentSubjectProps[] = [];
-  let answer:string[]=[]
+  let answer: string[] = [];
   getstudentsName("name").forEach((name) => {
     let studentName = name as studentNameProps;
-     getsubjectsofstudent(studentName).map(subject =>{
-            let subjectName = subject as studentSubjectProps
-            let mark = getMark({studntName:studentName,subject:subjectName})
-            if(mark >= data.mark && data.key ==="high") reults.push(subjectName)
-            if(mark <= data.mark && data.key ==="low") reults.push(subjectName)
-     })
+    getsubjectsofstudent(studentName).map((subject) => {
+      let subjectName = subject as studentSubjectProps;
+      let mark = getMark({ studntName: studentName, subject: subjectName });
+      if (mark >= data.mark && data.key === "high") reults.push(subjectName);
+      if (mark <= data.mark && data.key === "low") reults.push(subjectName);
+    });
   });
-  let result2 = getsubjectsofstudent('Aju')
-  result2.forEach(res => {
-      let flag = 0
-      reults.forEach(res2 => res2 === res ? flag++ : flag)
-      if(flag > getstudentsName('name').length / 2 ) answer.push(res)
-  })
+  let result2 = getsubjectsofstudent("Aju");
+  result2.forEach((res) => {
+    let flag = 0;
+    reults.forEach((res2) => (res2 === res ? flag++ : flag));
+    if (flag > getstudentsName("name").length / 2) answer.push(res);
+  });
   return answer;
 };
 
